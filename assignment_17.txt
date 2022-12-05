@@ -1,0 +1,82 @@
+1.
+
+def transpose_matrix(l):
+    l2 = []
+    for i in range(len(l[0])):
+        l1 = []
+        
+        for j in range(len(l)):
+            l1.append(l[j][i])
+        l2.append(l1)
+    return l2    
+        
+print(transpose_matrix([ [1, 1, 1], [2, 2, 2], [3, 3, 3]]))
+print(transpose_matrix([ [5, 5], [6, 7], [9, 1] ]))
+
+
+2.
+
+
+def is_valid_hex_code(s):
+    if len(s) == 7 and s[0] == '#':
+        for letter in s[1:]:
+            if letter.lower() not in 'abcdef' and not letter.isdigit() :
+                return False
+        return True
+    else:
+        return False
+        
+
+print(is_valid_hex_code("#CD5C5C"))
+print(is_valid_hex_code("#EAECEE"))
+print(is_valid_hex_code("#eaecee"))                
+print(is_valid_hex_code("#CD5C58C"))
+print(is_valid_hex_code("#CD5C5Z"))
+print(is_valid_hex_code("#CD5C&C"))
+print(is_valid_hex_code("CD5C5C"))
+
+3.
+
+
+def mark_maths(l):
+    count = 0
+    for item in l:
+        item1 = item.split('=')
+        if eval(item1[0]) == int(item1[1]):
+            count += 1
+
+    return str(round((count/len(l)) * 100)) +'%'     
+
+print(mark_maths(["2+2=4", "3+2=5", "10-3=3", "5+5=10"])) 
+print(mark_maths(["1-2=-2"]))
+print(mark_maths(["2+3=5", "4+4=9", "3-1=2"]))
+
+
+4.
+
+
+def magic_square_game(l1,l2):
+    if (sum(list(map(int,l1[1]))) % 2 != 0) and (sum(list(map(int,l2[1]))) % 2 == 0):
+        if l1[1][l2[0] - 1] == l2[1][l1[0] - 1]:
+            return True
+    return False
+
+print(magic_square_game([2, "100"], [1, "101"]))
+print(magic_square_game([2, "001"], [1, "101"]))
+print(magic_square_game([3, "111"], [2, "011"]) )
+print(magic_square_game([1, "010"], [3, "101"]))
+
+
+5.
+
+
+def lets_meet(d,v1,v2):
+    res =  d / (v1+v2)
+    time = res * 60
+    hours, seconds = divmod(time * 60, 3600)  # split to hours and seconds
+    minutes, seconds = divmod(seconds, 60)
+    return str(round(hours))+"h "+ str(round(minutes)) +"min "+ str(round(seconds)) +"sec"
+
+print(lets_meet(100, 10, 30))
+print(lets_meet(280, 70, 80))
+print(lets_meet(90, 75, 65))
